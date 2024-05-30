@@ -21,6 +21,7 @@
 #define SOFT_DELAY Delay(0x0FFFFF);
 
 void Delay(__IO u32 nCount); 
+void delay_ms(u16 time); 
 
 /**
   * @brief  主函数
@@ -37,16 +38,16 @@ int main(void)
 		
 		//关灯
 		#if 1
-//		LED1_ON;			  // 亮
-		SOFT_DELAY;
+		LED1_ON;			  // 亮
+		delay_ms(1000);
 		LED1_OFF;		   // 灭
 
-//		LED2_ON;			 // 亮
-		SOFT_DELAY;
+		LED2_ON;			 // 亮
+		delay_ms(1000);
 		LED2_OFF;		   // 灭
 
-//		LED3_ON;			 // 亮
-		SOFT_DELAY;
+		LED3_ON;			 // 亮
+		delay_ms(1000);
 		LED3_OFF;		   // 灭	 
 
 
@@ -104,5 +105,16 @@ int main(void)
 void Delay(__IO uint32_t nCount)	 //简单的延时函数
 {
 	for(; nCount != 0; nCount--);
+}
+
+
+void delay_ms(u16 time)
+{    
+   u16 i=0;  
+   while(time--)
+   {
+      i=7200;  //自己定义
+      while(i--) ;    
+   }
 }
 /*********************************************END OF FILE**********************/
