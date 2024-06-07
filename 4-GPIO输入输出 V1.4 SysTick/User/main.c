@@ -30,7 +30,7 @@ int main(void)
 {
     //初始化
     LED_GPIO_Config();
-    //KEY_GPIO_Config();
+    KEY_GPIO_Config();
 	
 		//中断初始化
 	  NVIC_Configuration();

@@ -21,22 +21,13 @@ void NVIC_Configuration(void)
 
 void EXTI_Key_Config(void)
 {
-	GPIO_InitTypeDef GPIO_InitStructure; 
+//	GPIO_InitTypeDef GPIO_InitStructure; 
 	EXTI_InitTypeDef EXTI_InitStructure;
 
 	/*开启按键GPIO口的时钟*/
 	RCC_APB2PeriphClockCmd(KEY1_INT_GPIO_CLK,ENABLE);
 												
-	/* 配置 NVIC 中断*/
-	//NVIC_Configuration();
-	
 /*--------------------------KEY1配置-----------------------------*/
-	/* 选择按键用到的GPIO */	
-  GPIO_InitStructure.GPIO_Pin = KEY1_INT_GPIO_PIN;
-  /* 配置为浮空输入 */	
-  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
-	
-  GPIO_Init(KEY1_INT_GPIO_PORT, &GPIO_InitStructure);
 
 	/* 选择EXTI的信号源 */
   GPIO_EXTILineConfig(KEY1_INT_EXTI_PORTSOURCE, KEY1_INT_EXTI_PINSOURCE); 
@@ -51,11 +42,6 @@ void EXTI_Key_Config(void)
   EXTI_Init(&EXTI_InitStructure);
 	
   /*--------------------------KEY2配置-----------------------------*/
-	/* 选择按键用到的GPIO */	
-  GPIO_InitStructure.GPIO_Pin = KEY2_INT_GPIO_PIN;
-  /* 配置为浮空输入 */	
-  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
-  GPIO_Init(KEY2_INT_GPIO_PORT, &GPIO_InitStructure);
 
 	/* 选择EXTI的信号源 */
   GPIO_EXTILineConfig(KEY2_INT_EXTI_PORTSOURCE, KEY2_INT_EXTI_PINSOURCE); 
@@ -64,7 +50,7 @@ void EXTI_Key_Config(void)
 	/* EXTI为中断模式 */
   EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
 	/* 下降沿中断 */
-  EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling;
+  EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling;	
   /* 使能中断 */	
   EXTI_InitStructure.EXTI_LineCmd = ENABLE;
   EXTI_Init(&EXTI_InitStructure);
